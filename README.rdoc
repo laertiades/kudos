@@ -1,0 +1,9 @@
+== README
+
+Initial Thoughts:
+
+* How to determine beginning of week?  Does rails have this built in?
+
+* Lets not use "kudos" in the code base.  Can of worms for Rails naming conventions.
+
+* Create random messages.  Perhaps there is an API for this.

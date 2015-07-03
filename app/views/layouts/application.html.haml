@@ -1,0 +1,28 @@
+!!!5
+%html
+  %head
+    %meta{ :charset => "utf-8" }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+    %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge" }
+    %title "Kudos"
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application', :async => Rails.env.production?
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        %ul.nav.navbar-nav
+          %li.active
+            = link_to "home", root_path
+          - if signed_in?
+            %li.active
+              = link_to "Profile", users_show_path
+            %li.active
+              = link_to "Sign Out", sessions_path, method: "delete"
+          - else
+            %li.active
+              = link_to "Sign In", new_session_path
+    .container
+      - flash.each do |key, value|
+        = content_tag(:div, value, class: "alert alert-#{key}") 
+      = yield

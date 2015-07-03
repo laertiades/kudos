@@ -1,0 +1,6 @@
+%h1 Kudos
+
+- @organizations.each do |org|
+  %h3= org.name
+  -org.users.each do |user|
+    %h5= user.email

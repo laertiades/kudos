@@ -1,7 +1,32 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+def populate_weeks_merits(organization, weeks_prior=0)
+
+  organization.users.each do |meritor|
+    #each user gives random number of kudos for given week 3 or less
+    rand_amount = Random.rand(4)
+    if rand_amount > 0
+      meritees = organization.users.limit(rand_amount).order("RANDOM()")
+      meritees.each do |meritee|
+        unless meritor.id == meritee.id
+          merit = meritor.given_merits.create(meritee_id: meritee.id, message: "#{meritee.name} is great with the #{Faker::Company.catch_phrase} and can #{Faker::Company.bs}")
+          if weeks_prior > 0
+            merit.update(updated_at: weeks_prior.weeks.ago, created_at: weeks_prior.weeks.ago)
+          end
+        end
+      end
+    end
+  end
+end
+
+
+organizations = Organization.create([{ name: Faker::Company.name }, { name: Faker::Company.name}])
+
+organizations.each do |org|
+  userCount = 3 + Random.rand(5)
+  for i in 0..userCount
+    org.users.create( name: Faker::Name.name, email: Faker::Internet.email, password: "password" )
+  end
+
+  populate_weeks_merits(org, 2)
+  populate_weeks_merits(org, 1)
+  populate_weeks_merits(org)
+end

@@ -1,0 +1,10 @@
+.row
+  .col-xs-8.col-xs-offset-2
+    %h3.ta-center Give Kudos to #{@meritee.name}
+
+    = form_for @merit, url: merit_path(@meritee) do |f|
+      = f.label :message
+      = f.text_area :message, class: "form-control"
+
+      = f.submit "Give Kudos", class: "btn btn-large btn-primary"
+      

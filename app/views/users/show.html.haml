@@ -1,0 +1,29 @@
+.row
+  .col-xs-12
+    %h6 organization: #{@user.organization.name}
+    %h6 name: #{@user.name}
+    %h6 email: #{@user.email}
+.row
+  .col-xs-6
+    -if @weeks_merit_count < 3
+      %h3.ta-center Give Kudos
+      -@candidates.each do |meritee|
+        .give-merit
+          %h5
+            %a
+              = link_to merit_path(meritee), class: "btn btn-default" do
+                %i.glyphicon.glyphicon-thumbs-up
+                = meritee.name
+    %h3.ta-center Kudos Already Given
+    -@meritees.each do |meritee|
+      .give-merit
+        %h5 #{meritee.name}
+  .col-xs-6
+    %h3.ta-center Kudos Received
+    -@user.received_merits.order(created_at: :desc).each do |merit|
+      .merit-display
+        %p.merit-message
+          = merit.message
+        %h5.pull-right= merit.meritor.name
+        %h5.pull-right.clear= merit.created_at.strftime("%b %e, %Y")
+        .clear

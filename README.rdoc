@@ -1,9 +1,15 @@
 == KUDOS
 
-Initial Thoughts:
+Instructions:
 
-* How to determine beginning of week?  Does rails have this built in?
+* clone repository
 
-* Lets not use "kudos" in the code base.  Can of worms for Rails naming conventions.
+* ```bundle install```
 
-* Create random messages.  Perhaps there is an API for this.
+* ```rake db:setup```
+
+* ```rails s```
+
+* navigate to localhost:3000 in your browser
+
+* copy one of the email addresses from the home page, click on the "Sign In" link, copy the email address into the email field, and enter "password" in the password field

@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     @meritees = []
     @candidates = []
 
+    #divide members of organization into two arrays:
+    #Those who have been given Kudos and those who have not.
     team.each do |team_mate|
       unless team_mate.id == @user.id
         already_recipient = false

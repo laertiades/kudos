@@ -12,6 +12,6 @@ RSpec.describe "Auth", type: :request do
   describe "visit authenticated page after signing in" do
     let(:user) { FactoryGirl.create(:user) }
     before { signin user }
-    it { should have_selector('h1', text: user.name) }
+    it { should have_selector('h6', text: user.name) }
   end
 end

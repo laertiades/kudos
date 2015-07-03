@@ -1,6 +1,6 @@
 .row
   .col-xs-12
-    %h6 organization: #{@user.organization.name}
+    %h6 organization: #{@user.organization.try(:name)}
     %h6 name: #{@user.name}
     %h6 email: #{@user.email}
 .row

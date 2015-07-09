@@ -1,7 +1,10 @@
-FactoryGirl.define do  factory :merit do
+FactoryGirl.define do
+  factory :organization do
+    sequence(:name)  { |n| "Organization #{n}" }
+  end
+
+  factory :merit do
     message "MyText"
-meritor_id 1
-meritee_id 1
   end
 
   factory :user do
